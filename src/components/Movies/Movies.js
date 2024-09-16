@@ -6,7 +6,8 @@ class Movies extends Component{
         super(props)
         console.log(props);
         this.state = {
-            peliculas: []
+            peliculas: [],
+            cargador: true
         }        
     }
 
@@ -16,20 +17,27 @@ class Movies extends Component{
         .then((data) => {
             console.log(data)
             this.setState({
-                peliculas: data.results
+                peliculas: data.results,
+                cargador: false
                 
             })
         })
-        .catch((err)=> console.log(err))
+        .catch((err)=> {
+        console.log(err)
+        this.setState({cargador:false})
+        })
     }
 
     render(){
         return(
             <React.Fragment>
                 <section>
-                {this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
+                {this.state.peliculas.length === 0 ?
+                    <h3>Cargando...</h3> :
+                    this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
                 </section>
             </React.Fragment>
+
             
         )
 
