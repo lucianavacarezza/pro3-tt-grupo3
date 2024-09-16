@@ -1,13 +1,21 @@
-import './App.css';
+import React from 'react';
 import NotFound from './screens/NotFound/NotFound'; 
-import { Switch, Route } from 'react-router-dom/cjs/react-router-dom.min';
+import Home from "./screens/Home/Home"
+import { Switch, Route, BrowserRouter } from 'react-router-dom/cjs/react-router-dom.min';
+
+
 
 
 function App() {
   return (
-    <Switch>
-    <Route path="" component= {NotFound}/>
-    </Switch>
+    <BrowserRouter>
+      <React.Fragment>
+        <Switch>
+        <Route path="/" exact={true} component={Home}/>
+        <Route path="" component= {NotFound}/>
+        </Switch>
+      </React.Fragment>
+    </BrowserRouter>
   );
 }
 
