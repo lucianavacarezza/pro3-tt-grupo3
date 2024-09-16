@@ -27,7 +27,7 @@ class Movies extends Component{
         return(
             <React.Fragment>
                 <section>
-                {this.state.peliculas.map((peli) => <Movie data = {peli}/>)}
+                {this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
                 </section>
             </React.Fragment>
             
