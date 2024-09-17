@@ -11,6 +11,7 @@ function Header() {
                     <li><Link to="/favoritos">Favoritos</Link></li>
                     <li><Link to="/masPopulares">Más populares</Link></li>
                     <li><Link to="/mejorPuntuadas">Mejores puntuadas</Link></li>
+                    <li><Link to="/favorites">Tus peliculas favoritas</Link></li>
                 </ul>
             </nav>
         </React.Fragment>
