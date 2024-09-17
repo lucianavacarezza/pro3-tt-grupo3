@@ -14,10 +14,10 @@ class MovieDetail extends Component {
   }
 
   componentDidMount() {
-    const movieId = this.props.match.params.id; // Obtener el ID de la película desde la URL
+    const movieId = this.props.match.params.id; 
     this.fetchMovieDetails(movieId);
 
-    // Revisar si la película está en favoritos
+   
     let storage = localStorage.getItem("favorites");
     if (storage !== null) {
       let storageParseado = JSON.parse(storage);
