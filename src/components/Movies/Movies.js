@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import Movie from "../Movie/Movie";
+import "./Movies.css";
 
 class Movies extends Component{
     constructor(props){
@@ -32,8 +33,8 @@ class Movies extends Component{
         return(
             <React.Fragment>
                 <section>
-                {this.state.peliculas.length === 0 ?
-                    <h3>Cargando...</h3> :
+                {this.state.peliculas.length === 20 ?
+                    <h3 className="cargador">Cargando...</h3> :
                     this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
                 </section>
             </React.Fragment>
