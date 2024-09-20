@@ -4,26 +4,14 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Busqueda from "../../components/Busqueda/Busqueda";
 
-class Home extends Component {
+function Home(){
 
-    constructor(){
-        super();
-        this.state = {
-            peliculas : [],
-            backup: []
-
-        }
-    }
-
-    
-
-    render() {
 
         return (
             <React.Fragment>
                 <Header />
                 <Busqueda />
-                <h2>Las mas populares</h2>
+                <Link to="/masPopulares"><h2>Las mas populares</h2></Link>
                 <Movies api={"https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} />
                 <h2>Mejores punteadas</h2>
                 <Movies api={"https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} />
@@ -32,7 +20,7 @@ class Home extends Component {
 
         )
     }
-}
+
 
 export default Home
 
