@@ -29,11 +29,13 @@ class Movies extends Component{
         })
     }
 
+    
+
     render(){
         return(
             <React.Fragment>
                 <section>
-                {this.state.peliculas.length === 20 ?
+                {this.state.peliculas.length === 0 ? // cambiar a 0
                     <h3 className="cargador">Cargando...</h3> :
                     this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
                 </section>
