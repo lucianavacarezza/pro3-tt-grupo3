@@ -19,7 +19,7 @@ class Movies extends Component{
         .then((data) => {
             console.log(data)
             this.setState({
-                peliculas: data.results,
+                peliculas: data.results.slice(0,5),
                 cargador: false
                 
             })
@@ -31,10 +31,22 @@ class Movies extends Component{
     }
 
     cargarMas(){
-
+        fetch(this.props.api)
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data)
+            let largo= this.state.peliculas.length + 5
+            this.setState({
+                peliculas: data.results.slice(0,largo)
+            })
+            console.log(this.setState.peliculas);
+        })
+        .catch((err)=> {
+            console.log(err)
+            this.setState({cargador:false})
+            })
     }
 
-    
 
     render(){
         return(
@@ -42,9 +54,9 @@ class Movies extends Component{
                 <section>
                 {this.state.peliculas.length === 0 ? // cambiar a 0
                     <h3 className="cargador">Cargando...</h3> :
-                    this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
+                    this.state.peliculas.map((peli) => <Movie data = {peli}/>)}
                 </section>
-                <button>{this.state.boton}</button>
+                <button onClick={()=>this.cargarMas()}>{this.state.boton}</button>
             </React.Fragment>
 
             
