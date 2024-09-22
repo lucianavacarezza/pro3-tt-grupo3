@@ -6,7 +6,8 @@ class Secciones extends Component {
         super();
         this.state= {
             url: window.location.pathname.slice(1,window.location.pathname.length),
-            api: ""
+            api: "",
+            cargador: true,
         }
     }
 
@@ -17,35 +18,36 @@ class Secciones extends Component {
         let apiOk= "";
         
         if(url=== "populars") {
-        apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} 
-        else {}
+            apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} 
+        else if (url=== "topRated"){
+            apiOk= "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0"
+        }
 
         this.setState({
             api: apiOk
         })
     }
-
-    
-
+ 
 
 
     render(){
-        
         return(
             <React.Fragment>
                 <section>
-                    {this.state.url === "populars" ?
+                    {(!this.state.api) ? 
+                        <h3 className="cargador">Cargando...</h3> :
+                    this.state.url === "populars" ?
                     <article>
                     <h2>Las mas populares</h2>
                     <Movies api={this.state.api}/> 
-                    </article> :
-
-                    <p>hola</p> //si no pongo esto se rompe
-                    
-                }
+                    </article> : 
+                    <article>
+                    <h2>Mejor punteadas</h2>
+                    <Movies api={this.state.api}/> 
+                    </article>
+                    }
                 </section>
-            </React.Fragment>
-            
+            </React.Fragment>            
         )
     }
 }

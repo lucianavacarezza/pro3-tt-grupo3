@@ -18,6 +18,7 @@ function App() {
         <Route path="/movie/:id" component={MovieDetail}/>
         <Route path="/favorites" component={PeliFavoritas}/>
         <Route path="/populars" component={Secciones}/>
+        <Route path="/topRated" component={Secciones}/>
         <Route path="" component= {NotFound}/>
         </Switch>
       </React.Fragment>
