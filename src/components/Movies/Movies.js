@@ -8,7 +8,8 @@ class Movies extends Component{
         console.log(props);
         this.state = {
             peliculas: [],
-            cargador: true
+            cargador: true,
+            boton: "Cargar más"
         }        
     }
 
@@ -29,6 +30,10 @@ class Movies extends Component{
         })
     }
 
+    cargarMas(){
+
+    }
+
     
 
     render(){
@@ -39,6 +44,7 @@ class Movies extends Component{
                     <h3 className="cargador">Cargando...</h3> :
                     this.state.peliculas.slice(0,5).map((peli) => <Movie data = {peli}/>)}
                 </section>
+                <button>{this.state.boton}</button>
             </React.Fragment>
 
             
