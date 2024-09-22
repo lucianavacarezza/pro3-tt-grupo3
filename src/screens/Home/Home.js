@@ -12,7 +12,7 @@ function Home(){
             <React.Fragment>
                 <Header />
                 <Busqueda />
-                <Link to="/masPopulares"><h2>Las mas populares</h2></Link>
+                <Link to="/populars"><h2>Las mas populares</h2></Link>
                 <Movies api={"https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} />
                 <h2>Mejores punteadas</h2>
                 <Movies api={"https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} />
