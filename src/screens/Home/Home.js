@@ -3,6 +3,7 @@ import Movies from "../../components/Movies/Movies";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Busqueda from "../../components/Busqueda/Busqueda";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function Home(){
 
