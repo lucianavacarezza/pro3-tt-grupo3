@@ -9,11 +9,10 @@ class Secciones extends Component {
         this.state= {
             url: window.location.pathname.slice(1,window.location.pathname.length),
             api: "",
-            cargador: true,
+            cargador: true
         }
     }
 
-    
 
     componentDidMount(){
         let url = this.state.url;
@@ -29,6 +28,7 @@ class Secciones extends Component {
             api: apiOk
         })
     }
+
  
 
 
@@ -41,11 +41,9 @@ class Secciones extends Component {
                         <h3 className="cargador">Cargando...</h3> :
                     this.state.url === "populars" ?
                     <article>
-                    <h2>Las mas populares</h2>
                     <Movies api={this.state.api}/> 
                     </article> : 
                     <article>
-                    <h2>Mejor punteadas</h2>
                     <Movies api={this.state.api}/> 
                     </article>
                     }

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Movie from "../Movie/Movie";
 import "./Movies.css";
+import Filtro from "../Filtro/Filtro";
 
 class Movies extends Component {
     constructor(props) {
@@ -8,6 +9,7 @@ class Movies extends Component {
         console.log(props);
         this.state = {
             peliculas: [],
+            backup: [],
             cargador: true,
             boton: "Cargar más"
         }
@@ -20,6 +22,7 @@ class Movies extends Component {
                 console.log(data)
                 this.setState({
                     peliculas: data.results.slice(0, 5),
+                    backup: data.results.slice(0, 5),
                     cargador: false
 
                 })
@@ -30,6 +33,17 @@ class Movies extends Component {
             })
     }
 
+    filtrarPeliculas(titulo) {
+        if (titulo==="") {
+            this.setState({peliculas: this.state.backup})
+            
+        } else {
+        let peliculasFiltradas = this.state.backup.filter((peli) => peli.title.toLowerCase().includes(titulo.toLowerCase()))
+        this.setState({
+            peliculas: peliculasFiltradas
+        })}
+    }
+
     cargarMas() {
         fetch(this.props.api)
             .then((res) => res.json())
@@ -37,7 +51,8 @@ class Movies extends Component {
                 console.log(data)
                 let largo = this.state.peliculas.length + 5
                 this.setState({
-                    peliculas: data.results.slice(0, largo)
+                    peliculas: data.results.slice(0, largo),
+                    backup: data.results.slice(0, largo)
                 })
                 console.log(this.state.peliculas);
             })
@@ -49,20 +64,35 @@ class Movies extends Component {
 
 
     render() {
+        console.log(this.state.backup);
+
+        
         return (
             <React.Fragment>
-                
+
                 <section>
+
+
+                    {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
+                        <Filtro filtrarPeliculas={(titulo) => this.filtrarPeliculas(titulo)} />
+                        : null
+                    }
+
+                    {window.location.pathname.slice(1) === "populars" ?
+                        <h2>Las más populares</h2> :
+                        <h2>Mejores punteadas</h2>}
+
+
                     {this.state.peliculas.length === 0 ? // cambiar a 0
                         <h3 className="cargador">Cargando...</h3> :
                         this.state.peliculas.map((peli) => <Movie data={peli} />)}
                 </section>
-                {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ? 
-                this.state.peliculas.length === 20 ?
-                    <h2>No hay más peliculas para cargar</h2> :
-                    <button onClick={() => this.cargarMas()}>{this.state.boton}</button>
-                 : null
-            }
+                {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
+                    this.state.peliculas.length === 20 ?
+                        <h2>No hay más peliculas para cargar</h2> :
+                        <button onClick={() => this.cargarMas()}>{this.state.boton}</button>
+                    : null
+                }
             </React.Fragment>
 
 
