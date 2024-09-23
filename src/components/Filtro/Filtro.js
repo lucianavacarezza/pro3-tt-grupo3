@@ -25,8 +25,8 @@ class Filtro extends Component{
     }
     render(){
         return(
-            <form onSubmit={(event)=> this.evitarSubmit(event)}>
-                <input type="text" placeholder="Escribir el nombre de una película" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor}/>
+            <form onSubmit={(event)=> this.evitarSubmit(event)} className="form-container">
+                <input className="form-input" type="text" placeholder="Escribir el nombre de una película" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor}/>
             </form>
         )
     }

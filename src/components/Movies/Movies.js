@@ -71,8 +71,6 @@ class Movies extends Component {
             <React.Fragment>
 
                 <section>
-
-
                     {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
                         <Filtro filtrarPeliculas={(titulo) => this.filtrarPeliculas(titulo)} />
                         : null
@@ -85,7 +83,7 @@ class Movies extends Component {
                         null}
 
                     <article className="movies">
-                    {this.state.peliculas.length === 0 ? // cambiar a 0
+                    {this.state.peliculas.length === 0 ? 
                         <h3 className="cargador">Cargando...</h3> :
                         this.state.peliculas.map((peli) => <Movie data={peli} />)}
                     </article>
@@ -93,7 +91,7 @@ class Movies extends Component {
                 {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
                     this.state.peliculas.length === 20 ?
                         <h2>No hay más peliculas para cargar</h2> :
-                        <button onClick={() => this.cargarMas()}>{this.state.boton}</button>
+                        <button className="botonCargarMas" onClick={() => this.cargarMas()}>{this.state.boton}</button>
                     : null
                 }
             </React.Fragment>
