@@ -63,9 +63,7 @@ class Movies extends Component {
     }
 
 
-    render() {
-
-        
+    render() {        
         return (
             <React.Fragment>
 

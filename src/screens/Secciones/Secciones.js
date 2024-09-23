@@ -13,74 +13,56 @@ class Secciones extends Component {
         }
     }
 
-
     componentDidMount(){
-        let urlOk = "";
-        let apiOk= "";
-
-        console.log(this.props);
-        
-        
-        if(this.props.match.params.seccion === "populars") {
-            apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
-            urlOk= "populars"
+        if(window.location.pathname.slice(1)=== "populars") {
+            this.setState({
+                api: "https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0",
+                url: "populars"
+            })
+            
         } 
-        else if (this.props.match.params.seccion === "topRated"){
-            apiOk= "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
-            urlOk= "topRated"
+        else if (window.location.pathname.slice(1)=== "topRated"){
+            this.setState({
+                api: "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0",
+                url: "topRated"
+            })
         }
-
-        this.setState({
-            api: apiOk,
-            url: urlOk
-        })
     }
 
-    componentDidUpdate() {
-        let urlOk = "";
-        let apiOk= "";
-
-        console.log(this.props);
-        
-        
-        if(this.props.match.params.seccion === "populars") {
-            apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
-            urlOk= "populars"
-        } 
-        else if (this.props.match.params.seccion === "topRated"){
-            apiOk= "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
-            urlOk= "topRated"
+    componentDidUpdate(){
+        if(window.location.pathname.slice(1)!== this.state.url){
+            if(window.location.pathname.slice(1)=== "populars") {
+                this.setState({
+                    api: "https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0",
+                    url: "populars"
+                })
+            } 
+            else if (window.location.pathname.slice(1)=== "topRated"){
+                this.setState({
+                    api: "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0",
+                    url: "topRated"
+                })
+            }
         }
-
-        this.setState({
-            api: apiOk,
-            url: urlOk
-        })
-        
     }
-    
-    
-
 
     render(){
-
         console.log(this.state.api);
-        console.log(this.props);
-        
+        console.log(this.state);
         
         
         return(
             <React.Fragment>
                 <Header/>
                 <section>
-                    {(!this.state.api) ? 
+                    {(!this.state.api || this.state.url !== window.location.pathname.slice(1)) ? 
                         <h3 className="cargador">Cargando...</h3> :
                     this.state.url === "populars" ?
                     <article>
-                    <Movies api={this.state.api}/> 
+                    <Movies api={"https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0"}/> 
                     </article> : 
                     <article>
-                    <Movies api={this.state.api}/> 
+                    <Movies api={"https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0"}/> 
                     </article>
                     }
                 </section>

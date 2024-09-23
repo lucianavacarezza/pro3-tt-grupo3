@@ -6,7 +6,7 @@ function Header() {
     return(
         <React.Fragment>
             <header className="header">
-            <img src="/imgs/cinemania.png" className="logo"/>
+            <Link to= "/"><img src="/imgs/cinemania.png" className="logo"/></Link>
             <nav>
                 <ul className="subtitulos">
                     <li> <Link to="/" exact={true}>Home</Link></li>
