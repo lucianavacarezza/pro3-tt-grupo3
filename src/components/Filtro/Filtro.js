@@ -1,11 +1,10 @@
-import React ,{ Component } from "react";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import React, {Component} from "react";
 
-class Busqueda extends Component {
+class Filtro extends Component{
     constructor(props){
         super(props);
         this.state = {
-            valor: ""
+            valor: "",
         }
         
     }
@@ -14,20 +13,24 @@ class Busqueda extends Component {
         event.preventDefault()
     }
     controlarCambios(event) {
-        this.setState({ valor: event.target.value})
-    }
+        this.setState({ valor: event.target.value},
+        ()=> {
+            if (this.props.filtrarPeliculas) {
+                this.props.filtrarPeliculas(this.state.valor)
+            } else{
+                <h3>No existen películas con ese título</h3>
+            }
+        } )
 
+    }
     render(){
         return(
             <form onSubmit={(event)=> this.evitarSubmit(event)}>
-                <Link to={`/searchResults/${this.state.valor}`}>
                 <input type="text" placeholder="Escribir el nombre de una película" onChange={(event)=>this.controlarCambios(event)} value={this.state.valor}/>
-                </Link>
-
             </form>
         )
     }
 
-    }
+}
 
-export default Busqueda
+export default Filtro
