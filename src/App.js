@@ -18,8 +18,7 @@ function App() {
         <Route path="/" exact={true} component={Home}/>
         <Route path="/movie/:id" component={MovieDetail}/>
         <Route path="/favorites" component={PeliFavoritas}/>
-        <Route path="/populars" component={Secciones}/>
-        <Route path="/topRated" component={Secciones}/>
+        <Route path="/:seccion" component={Secciones}/>
         <Route path= "/searchResults/:peliculas" component={SearchResults}/>
         <Route path="" component= {NotFound}/>
         </Switch>

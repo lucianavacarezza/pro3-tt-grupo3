@@ -4,10 +4,10 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 class Secciones extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state= {
-            url: window.location.pathname.slice(1,window.location.pathname.length),
+            url: "",
             api: "",
             cargador: true
         }
@@ -15,24 +15,60 @@ class Secciones extends Component {
 
 
     componentDidMount(){
-        let url = this.state.url;
+        let urlOk = "";
         let apiOk= "";
+
+        console.log(this.props);
         
-        if(url=== "populars") {
-            apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0"} 
-        else if (url=== "topRated"){
-            apiOk= "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0"
+        
+        if(this.props.match.params.seccion === "populars") {
+            apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
+            urlOk= "populars"
+        } 
+        else if (this.props.match.params.seccion === "topRated"){
+            apiOk= "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
+            urlOk= "topRated"
         }
 
         this.setState({
-            api: apiOk
+            api: apiOk,
+            url: urlOk
         })
     }
 
- 
+    componentDidUpdate() {
+        let urlOk = "";
+        let apiOk= "";
+
+        console.log(this.props);
+        
+        
+        if(this.props.match.params.seccion === "populars") {
+            apiOk="https://api.themoviedb.org/3/movie/popular?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
+            urlOk= "populars"
+        } 
+        else if (this.props.match.params.seccion === "topRated"){
+            apiOk= "https://api.themoviedb.org/3/movie/top_rated?api_key=1f514b0acc26df1dd866c112f7bcb6c0";
+            urlOk= "topRated"
+        }
+
+        this.setState({
+            api: apiOk,
+            url: urlOk
+        })
+        
+    }
+    
+    
 
 
     render(){
+
+        console.log(this.state.api);
+        console.log(this.props);
+        
+        
+        
         return(
             <React.Fragment>
                 <Header/>

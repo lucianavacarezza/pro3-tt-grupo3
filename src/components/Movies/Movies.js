@@ -64,7 +64,6 @@ class Movies extends Component {
 
 
     render() {
-        console.log(this.state.backup);
 
         
         return (
