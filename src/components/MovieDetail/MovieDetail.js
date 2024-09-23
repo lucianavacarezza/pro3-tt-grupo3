@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 
 class MovieDetail extends Component {
@@ -97,6 +99,8 @@ class MovieDetail extends Component {
     }
 
     return (
+      <React.Fragment>
+        <Header/>
       <article className='movie-detail'>
         <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
         <h2>{movie.title}</h2>
@@ -112,6 +116,8 @@ class MovieDetail extends Component {
           {this.state.textoFav}
         </button>
       </article>
+      <Footer/>
+      </React.Fragment>
     );
   }
 }

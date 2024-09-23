@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 
 class PeliFavoritas extends Component {
   constructor(props) {
@@ -42,6 +44,8 @@ class PeliFavoritas extends Component {
     }
 
     return (
+      <React.Fragment>
+      <Header/>
       <div className="favorites-page">
         <h1>Tus Películas Favoritas</h1>
         <div className="favorites-list">
@@ -60,6 +64,8 @@ class PeliFavoritas extends Component {
           ))}
         </div>
       </div>
+      <Footer/>
+      </React.Fragment>
     );
   }
 }

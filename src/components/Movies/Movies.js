@@ -51,6 +51,7 @@ class Movies extends Component {
     render() {
         return (
             <React.Fragment>
+                
                 <section>
                     {this.state.peliculas.length === 0 ? // cambiar a 0
                         <h3 className="cargador">Cargando...</h3> :
@@ -58,7 +59,7 @@ class Movies extends Component {
                 </section>
                 {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ? 
                 this.state.peliculas.length === 20 ?
-                    <h2>No hay más peliculas para mostrar</h2> :
+                    <h2>No hay más peliculas para cargar</h2> :
                     <button onClick={() => this.cargarMas()}>{this.state.boton}</button>
                  : null
             }
