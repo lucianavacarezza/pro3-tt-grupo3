@@ -1,3 +1,39 @@
+.movie-container {
+    background-color: #ffffff; 
+    border: 2px solid #c8102e; 
+    border-radius: 15px;
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.movie-container img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.movie-container h2 {
+    color:#c8102e
+}
+
+.movie-container button {
+    background-color: #c8102e; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 5px;
+    font-size: medium;
+}
+
+.movie-container button:hover {
+    background-color: #ffcc00; 
+    color: #002366; 
+}
+
+
 .ocultar{
     display: none;
 

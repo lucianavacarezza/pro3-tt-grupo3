@@ -1,0 +1,34 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: black;
+    padding: 10px 20px;
+}
+
+
+.logo {
+    height: 200px;
+    width: auto;
+    margin-right: 20px;
+}
+
+
+.subtitulos {
+    display: flex;
+    flex-direction: row;
+}
+
+.subtitulos li{
+    margin-right: 30px;
+}
+
+
+.subtitulos li a {
+    text-decoration: none;
+    color: white; 
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+

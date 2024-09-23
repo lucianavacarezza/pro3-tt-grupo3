@@ -30,6 +30,7 @@ class Movie extends Component {
     render(){
         return(
         <React.Fragment>
+          <section className="movie-container">
         <img src={`https://image.tmdb.org/t/p/w342/${this.props.data.poster_path}`}/>
         <h2>{this.props.data.original_title}</h2>
         <p className={this.state.clase}>{this.props.data.overview}</p>
@@ -38,6 +39,7 @@ class Movie extends Component {
         <button>Ir a detalle</button>
         </Link>
         <button>Agregar a favoritos</button>
+        </section>
         </React.Fragment>
         )
     }

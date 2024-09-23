@@ -1,0 +1,30 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background-color: black;
+    border-radius: 8px;
+}
+
+/* Campo de texto */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    margin-right: 10px;
+    background-color: white;
+    color: grey;
+}
+
+/* Estilo del botón de búsqueda */
+.form-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}

@@ -79,13 +79,16 @@ class Movies extends Component {
                     }
 
                     {window.location.pathname.slice(1) === "populars" ?
-                        <h2>Las más populares</h2> :
-                        <h2>Mejores punteadas</h2>}
+                        <h2 className="titulo">Las más populares</h2> :
+                        window.location.pathname.slice(1) === "topRated" ?
+                        <h2>Mejores punteadas</h2> :
+                        null}
 
-
+                    <article className="movies">
                     {this.state.peliculas.length === 0 ? // cambiar a 0
                         <h3 className="cargador">Cargando...</h3> :
                         this.state.peliculas.map((peli) => <Movie data={peli} />)}
+                    </article>
                 </section>
                 {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
                     this.state.peliculas.length === 20 ?
