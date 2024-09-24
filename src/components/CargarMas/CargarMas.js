@@ -9,7 +9,10 @@ class CargarMas extends Component {
             peliculas: [],
             backup: [],
             cargador: true,
-            boton: "Cargar más"
+            boton: "Cargar más",
+            api: "",
+            pagina: 1
+
         }
     }
 
@@ -21,8 +24,8 @@ class CargarMas extends Component {
                 this.setState({
                     peliculas: data.results,
                     backup: data.results,
-                    cargador: false
-
+                    cargador: false,
+                    api: this.props.api + this.state.pagina
                 })
             })
             .catch((err) => {
@@ -49,7 +52,9 @@ class CargarMas extends Component {
                 console.log(data)
                 this.setState({
                     peliculas: data.results,
-                    backup: data.results
+                    backup: data.results,
+                    pagina: this.state.pagina + 1,
+                    api: this.props.api + (pagina +1)
                 })
                 console.log(this.state.peliculas);
             })
@@ -60,12 +65,27 @@ class CargarMas extends Component {
     }
 
 
-    render() {        
+    render() {
+           
         return (
             <React.Fragment>
                 <section>
+                    
+                {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
+                        <Filtro filtrarPeliculas={(titulo) => this.filtrarPeliculas(titulo)} />
+                        : null
+                    }
 
+                    <article className="movies">
+                    {this.state.peliculas.length === 0 ? 
+                        <h3 className="cargador">Cargando...</h3> :
+                        this.state.peliculas.map((peli) => <Movie data={peli} />)}
+                    </article>
                 </section>
+                
+                <button className="botonCargarMas" onClick={() => this.cargarMas()}>{this.state.boton}</button>
+                 
+                
             </React.Fragment>
 
 

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Movie from "../Movie/Movie";
 import "./Movies.css";
-import Filtro from "../Filtro/Filtro";
 
 class Movies extends Component {
     constructor(props) {
@@ -33,45 +32,14 @@ class Movies extends Component {
             })
     }
 
-    filtrarPeliculas(titulo) {
-        if (titulo==="") {
-            this.setState({peliculas: this.state.backup})
+    render() {    
+        console.log(this.props);
+        
             
-        } else {
-        let peliculasFiltradas = this.state.backup.filter((peli) => peli.title.toLowerCase().includes(titulo.toLowerCase()))
-        this.setState({
-            peliculas: peliculasFiltradas
-        })}
-    }
-
-    cargarMas() {
-        fetch(this.props.api)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data)
-                let largo = this.state.peliculas.length + 5
-                this.setState({
-                    peliculas: data.results.slice(0, largo),
-                    backup: data.results.slice(0, largo)
-                })
-                console.log(this.state.peliculas);
-            })
-            .catch((err) => {
-                console.log(err)
-                this.setState({ cargador: false })
-            })
-    }
-
-
-    render() {        
         return (
             <React.Fragment>
 
                 <section>
-                    {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
-                        <Filtro filtrarPeliculas={(titulo) => this.filtrarPeliculas(titulo)} />
-                        : null
-                    }
 
                     {window.location.pathname.slice(1) === "populars" ?
                         <h2 className="titulo">Las más populares</h2> :
