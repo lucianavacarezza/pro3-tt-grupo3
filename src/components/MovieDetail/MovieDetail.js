@@ -1,25 +1,26 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Movie from '../Movie/Movie';
 
 
 class MovieDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: null, 
+      movie: null,
       textoFav: "Agregar a favoritos",
-      esFav: false,                    
-      loading: true, 
-      error: null, 
+      esFav: false,
+      loading: true,
+      error: null,
     };
   }
 
   componentDidMount() {
-    const movieId = this.props.match.params.id; 
+    const movieId = this.props.match.params.id;
     this.fetchMovieDetails(movieId);
 
-   
+
     let storage = localStorage.getItem("favorites");
     if (storage !== null) {
       let storageParseado = JSON.parse(storage);
@@ -100,23 +101,28 @@ class MovieDetail extends Component {
 
     return (
       <React.Fragment>
-        <Header/>
-      <article className='movie-detail'>
-        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-        <h2>{movie.title}</h2>
-        <p><strong>Calificación:</strong> {movie.vote_average}</p>
-        <p><strong>Fecha de estreno:</strong> {movie.release_date}</p>
-        <p><strong>Duración:</strong> {movie.runtime} minutos</p>
-        <p><strong>Sinopsis:</strong> {movie.overview}</p>
-        <p><strong>Género:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p>
+        <Header />
+        <article className="movies">
+          {this.state.peliculas.length === 0 ?
+            <h3 className="cargador">Cargando...</h3> :
+            this.state.peliculas.map((peli) => <Movie data={peli} />)}
+        </article>
+        <article className='movie-detail'>
+          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+          <h2>{movie.title}</h2>
+          <p><strong>Calificación:</strong> {movie.vote_average}</p>
+          <p><strong>Fecha de estreno:</strong> {movie.release_date}</p>
+          <p><strong>Duración:</strong> {movie.runtime} minutos</p>
+          <p><strong>Sinopsis:</strong> {movie.overview}</p>
+          <p><strong>Género:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p>
 
-        <button
-          onClick={() => esFav ? this.sacarFav(this.props.match.params.id) : this.agregarFav(this.props.match.params.id)}
-        >
-          {this.state.textoFav}
-        </button>
-      </article>
-      <Footer/>
+          <button
+            onClick={() => esFav ? this.sacarFav(this.props.match.params.id) : this.agregarFav(this.props.match.params.id)}
+          >
+            {this.state.textoFav}
+          </button>
+        </article>
+        <Footer />
       </React.Fragment>
     );
   }
