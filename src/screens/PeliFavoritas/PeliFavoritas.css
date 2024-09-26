@@ -1,0 +1,36 @@
+
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  .favorites-page {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+  }
+  
+  .favorites-page h1 {
+    color: #e60000;  
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+
+  .favorites-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  
+  

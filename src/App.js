@@ -1,8 +1,8 @@
 import React from 'react';
 import NotFound from './screens/NotFound/NotFound'; 
 import Home from "./screens/Home/Home"
-import MovieDetail from "./components/MovieDetail/MovieDetail";
-import PeliFavoritas from "./components/PeliFavoritas/PeliFavoritas"; 
+import MovieDetail from "./screens/MovieDetail/MovieDetail";
+import PeliFavoritas from "./screens/PeliFavoritas/PeliFavoritas"; 
 import { Switch, Route } from 'react-router-dom/cjs/react-router-dom.min';
 import SearchResults from './screens/SearchResults/SearchResults';
 import MasPopulares from './screens/MasPopulares/MasPopulares';
