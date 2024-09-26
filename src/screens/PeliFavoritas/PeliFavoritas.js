@@ -65,7 +65,7 @@ class PeliFavoritas extends Component {
     const { peliculas } = this.state;
 
     if (peliculas.length === 0) {
-      return <p>No tenes películas en favoritos</p>;
+      return <p class="sinfavoritos">No tenes películas en favoritos</p>;
     }
 
     return (
