@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import Header from "../../components/Header/Header"
+import Header from "../../components/Header/Header";
 import Footer from '../../components/Footer/Footer';
-import "./PeliFavoritas.css"
+import "./PeliFavoritas.css";
 
 class PeliFavoritas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorites: [],  
+      favorites: [],
+      peliculas: [], 
     };
   }
 
@@ -20,10 +21,28 @@ class PeliFavoritas extends Component {
     let favorites = localStorage.getItem("favorites");
     if (favorites !== null) {
       favorites = JSON.parse(favorites);
-    } else {
-      favorites = [];
+      this.setState({ favorites });
+
+    
+      this.cargarDetallesPeliculas(favorites);
     }
-    this.setState({ favorites });
+  };
+
+  cargarDetallesPeliculas = (favorites) => {
+    for (let i = 0; i < favorites.length; i++) {
+      const id = favorites[i];
+      fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1f514b0acc26df1dd866c112f7bcb6c0&language=es-ES`)
+        .then(response => response.json())
+        .then(data => {
+    
+          this.setState((prevState) => ({
+            peliculas: [...prevState.peliculas, data]
+          }));
+        })
+        .catch(error => {
+          console.error("Error al cargar los detalles de la película", error);
+        });
+    }
   };
 
   sacarFavoritos = (id) => {
@@ -33,39 +52,47 @@ class PeliFavoritas extends Component {
       let nuevoArrayFav = favParseados.filter(elem => elem !== id);
       let nuevoArrayString = JSON.stringify(nuevoArrayFav);
       localStorage.setItem("favorites", nuevoArrayString);
-      this.setState({ favorites: nuevoArrayFav }); 
+
+      
+      this.setState({
+        favorites: nuevoArrayFav,
+        peliculas: this.state.peliculas.filter(peli => peli.id !== id)
+      });
     }
   };
 
   render() {
-    const { favorites } = this.state;
+    const { peliculas } = this.state;
 
-    if (favorites.length === 0) {
+    if (peliculas.length === 0) {
       return <p>No tenes películas en favoritos</p>;
     }
 
     return (
       <React.Fragment>
-      <Header/>
-      <div className="favorites-page">
-        <h1>Tus Películas Favoritas</h1>
-        <div className="favorites-list">
-          {favorites.map(id => (
-            <div key={id} className="favorite-item">
-              
-              <Link to={`/movie/${id}`}>
-                <p>Ir al detalle de la película {id}</p>
-              </Link>
-
-              
-              <button onClick={() => this.sacarFavoritos(id)}>
-                Eliminar de favoritos
-              </button>
-            </div>
-          ))}
+        <Header />
+        <div className="favorites-page">
+          <h1>Tus Películas Favoritas</h1>
+          <div className="favorites-list">
+            {peliculas.map(peli => (
+              <div key={peli.id} className="movie-container">
+                <img
+                  src={`https://image.tmdb.org/t/p/w342/${peli.poster_path}`}
+                  alt={peli.original_title}
+                />
+                <h2>{peli.original_title}</h2>
+                <p>{peli.overview}</p>
+                <Link to={`/movie/${peli.id}`}>
+                  <button>Ir a detalle</button>
+                </Link>
+                <button onClick={() => this.sacarFavoritos(peli.id)}>
+                  Quitar de favoritos
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-      <Footer/>
+        <Footer />
       </React.Fragment>
     );
   }
