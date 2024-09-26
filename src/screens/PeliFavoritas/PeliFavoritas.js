@@ -64,13 +64,11 @@ class PeliFavoritas extends Component {
   render() {
     const { peliculas } = this.state;
 
-    if (peliculas.length === 0) {
-      return <p class="sinfavoritos">No tenes películas en favoritos</p>;
-    }
-
     return (
       <React.Fragment>
         <Header />
+        {peliculas.length === 0 ? 
+        <p class="sinfavoritos">No tenes películas en favoritos</p> : 
         <div className="favorites-page">
           <h1>Tus Películas Favoritas</h1>
           <div className="favorites-list">
@@ -89,9 +87,11 @@ class PeliFavoritas extends Component {
                   Quitar de favoritos
                 </button>
               </div>
+              
             ))}
           </div>
         </div>
+        }
         <Footer />
       </React.Fragment>
     );

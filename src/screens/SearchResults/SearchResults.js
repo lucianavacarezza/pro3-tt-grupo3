@@ -3,6 +3,7 @@ import Movie from "../../components/Movie/Movie";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
+
 class SearchResults extends Component{
     constructor(props){
         super(props);
@@ -37,12 +38,15 @@ class SearchResults extends Component{
             <React.Fragment>
                 <Header/>
                 <h1>Resultados para "{this.props.match.params.peliculas}" </h1> 
-                <article>
+                <article className="movies">
                     {this.state.peliculas.length !== 0 ?  
                     this.state.peliculas.map((peli,idx)=> <Movie key={peli+idx} data={peli}/> ) : 
                     <h3>No hay resultados para tu busqueda </h3>
                     }
                 </article>
+                
+                        <h3 className="cargador">Cargando...</h3> 
+                       
                 <Footer/>
             </React.Fragment>   
         )

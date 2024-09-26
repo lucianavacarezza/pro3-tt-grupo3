@@ -1,0 +1,15 @@
+.cargador {
+    color: red;
+    display: flex;
+    justify-content: center;
+
+}
+
+.movies{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.titulo{
+    text-decoration: none;
+}

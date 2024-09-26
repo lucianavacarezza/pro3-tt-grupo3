@@ -104,11 +104,9 @@ class MovieDetail extends Component {
     return (
       <React.Fragment>
         <Header />
-        <article className="movies">
-          {this.state.peliculas.length === 0 ?
-            <h3 className="cargador">Cargando...</h3> :
-            this.state.peliculas.map((peli) => <Movie data={peli} />)}
-        </article>
+       
+          
+
         <article className='movie-detail'>
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           <h2>{movie.title}</h2>
