@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Movie from '../../components/Movie/Movie';
-import './MovieDetail.css'
-
+import './MovieDetail.css';
 
 class MovieDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       movie: null,
-      peliculas: [], 
+      peliculas: [],     
       textoFav: "Agregar a favoritos",
       esFav: false,
       loading: true,
@@ -21,7 +20,6 @@ class MovieDetail extends Component {
   componentDidMount() {
     const movieId = this.props.match.params.id;
     this.fetchMovieDetails(movieId);
-
 
     let storage = localStorage.getItem("favorites");
     if (storage !== null) {
@@ -104,24 +102,31 @@ class MovieDetail extends Component {
     return (
       <React.Fragment>
         <Header />
-       
-          
-
+        <article className="movies">
+          {this.state.peliculas.length === 0 ?
+            <h3 className="cargador">Cargando...</h3> :
+            this.state.peliculas.map((peli) => <Movie data={peli} />)}
+        </article>
+        
         <article className='movie-detail'>
           <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
           <h2>{movie.title}</h2>
+          
+          <button 
+            className={esFav ? 'fav-button added' : 'fav-button not-added'}  
+            onClick={() => esFav ? this.sacarFav(this.props.match.params.id) : this.agregarFav(this.props.match.params.id)}
+          >
+            {this.state.textoFav}
+          </button>
+
           <p><strong>Calificación:</strong> {movie.vote_average}</p>
           <p><strong>Fecha de estreno:</strong> {movie.release_date}</p>
           <p><strong>Duración:</strong> {movie.runtime} minutos</p>
           <p><strong>Sinopsis:</strong> {movie.overview}</p>
           <p><strong>Género:</strong> {movie.genres.map(genre => genre.name).join(', ')}</p>
 
-          <button
-            onClick={() => esFav ? this.sacarFav(this.props.match.params.id) : this.agregarFav(this.props.match.params.id)}
-          >
-            {this.state.textoFav}
-          </button>
         </article>
+        
         <Footer />
       </React.Fragment>
     );

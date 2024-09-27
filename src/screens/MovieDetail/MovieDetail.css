@@ -1,98 +1,157 @@
-
 body {
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-    color: #333;
-    margin: 0;
-    padding: 0;
-  }
-  
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
 
-  .movie-detail {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: #333;
-  }
-  
-  .movie-detail img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 20px;
-  }
-  
-  .movie-detail h2 {
-    color: #e60000; 
-    font-size: 28px;
-    margin-bottom: 10px;
-  }
-  
-  .movie-detail p {
-    font-size: 18px;
-    margin: 5px 0;
-  }
-  
-  
-  .movie-detail button {
-    background-color: #e60000; 
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .movie-detail button:hover {
-    background-color: #cc0000; 
-  }
-  
-  
-  .movie-detail strong {
-    color: #000000; 
-  }
-  
-  
-  .cargador {
-    color: #e60000; 
-    text-align: center;
-    font-size: 20px;
-    padding: 10px;
-  }
- 
-  .movies {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-  }
-  
-  .movie-container {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    width: 300px;
-    margin-bottom: 20px;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .movie-container img {
-    width: 100%;
-    border-radius: 8px;
-  }
-  
-  .movie-container h2 {
-    font-size: 20px;
-    color: #333;
-  }
-  
-  .movie-container p {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-  
+.movie-detail {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #333;
+}
+
+.movie-detail img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.movie-detail h2 {
+  color: #e60000;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.movie-detail p {
+  font-size: 18px;
+  margin: 5px 0;
+}
+
+.movie-detail button {
+  background-color: #e60000;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.movie-detail button:hover {
+  background-color: #cc0000;
+}
+
+.movie-detail strong {
+  color: #000000;
+}
+
+.cargador {
+  color: #e60000;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+}
+
+.movies {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.movie-container {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 300px;
+  margin-bottom: 20px;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.movie-container img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.movie-container h2 {
+  font-size: 20px;
+  color: #333;
+}
+
+.movie-container p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+
+.more {
+  color: #e60000;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  margin: 10px 0;
+  transition: color 0.3s ease;
+}
+
+.more:hover {
+  color: #cc0000;
+}
+
+
+.extra {
+  background-color: #f9f9f9;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 16px;
+}
+
+
+.fav-button {
+  background-color: #ffcc00; 
+  color: black;
+  border: none;
+  padding: 8px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.fav-button.added {
+  background-color: #e60000; 
+  color: white;
+}
+
+.fav-button.not-added {
+  background-color: #ffcc00;
+}
+
+.fav-button:hover {
+  background-color: #ff9900; 
+}
+
+
+.delete {
+  color: #e60000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 20px;
+  transition: color 0.3s ease;
+}
+
+.delete:hover {
+  color: #cc0000;
+}
