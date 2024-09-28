@@ -6,3 +6,15 @@ a.titulo {
 a {
     text-decoration: none;
 }
+
+.boton{
+    background-color: #c8102e; 
+    color: #ffffff; 
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 5px;
+    font-size: medium;
+    width: 100%;
+    }
+   

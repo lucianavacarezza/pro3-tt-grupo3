@@ -32,33 +32,19 @@ class Movies extends Component {
             })
     }
 
-    render() {    
+    render() {
         console.log(this.props);
-        
-            
+
+
         return (
             <React.Fragment>
-
                 <section>
-
-                    {window.location.pathname.slice(1) === "populars" ?
-                        <h2 className="titulo">Las más populares</h2> :
-                        window.location.pathname.slice(1) === "topRated" ?
-                        <h2>Mejores punteadas</h2> :
-                        null}
-
                     <article className="movies">
-                    {this.state.peliculas.length === 0 ? 
-                        <h3 className="cargador">Cargando...</h3> :
-                        this.state.peliculas.map((peli) => <Movie data={peli} />)}
+                        {this.state.peliculas.length === 0 ?
+                            <h3 className="cargador">Cargando...</h3> :
+                            this.state.peliculas.map((peli) => <Movie data={peli} />)}
                     </article>
                 </section>
-                {window.location.pathname.slice(1) === "populars" || window.location.pathname.slice(1) === "topRated" ?
-                    this.state.peliculas.length === 20 ?
-                        <h2>No hay más peliculas para cargar</h2> :
-                        <button className="botonCargarMas" onClick={() => this.cargarMas()}>{this.state.boton}</button>
-                    : null
-                }
             </React.Fragment>
 
 

@@ -12,7 +12,8 @@ class MasPopulares extends Component {
             peliculas: [],
             backup: [],
             pagina: 1,
-            cargador: true
+            cargador: true,
+            filtradas: []
         }
     }
 
@@ -58,9 +59,12 @@ class MasPopulares extends Component {
         } else {
             let peliculasFiltradas = this.state.backup.filter((peli) => peli.title.toLowerCase().includes(titulo.toLowerCase()))
             this.setState({
-                peliculas: peliculasFiltradas
+                peliculas: peliculasFiltradas,
+                filtradas: peliculasFiltradas
             })
         }
+        console.log(this.state.peliculas);
+
     }
 
     render() {
@@ -74,9 +78,13 @@ class MasPopulares extends Component {
                     <h3 className="cargador">Cargando...</h3> :
                     <section>
                         <h2>Las más populares</h2>
-                        <article className="movies">
-                            {this.state.peliculas.map((peli) => <Movie data={peli} />)}
-                        </article>
+                        {this.state.peliculas.length === 0 ?
+                            <p>No existen peliculas con ese nombre</p>
+                            :
+                            <article className="movies">
+                                {this.state.peliculas.map((peli) => <Movie data={peli} />)}
+                            </article>
+                        }
                         <button className="botonCargarMas" onClick={() => this.cargarMas()}>Cargar más</button>
                     </section>
                 }

@@ -18,18 +18,62 @@
 .subtitulos {
     display: flex;
     flex-direction: row;
+    list-style: none;
 }
 
-.subtitulos li{
+.subtitulos li {
     margin-right: 30px;
 }
 
 
 .subtitulos li a {
     text-decoration: none;
-    color: white; 
+    color: white;
     font-size: 18px;
-    transition: color 0.3s ease;
+    list-style: none;
 }
 
 
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .logo {
+        height: 120px;
+    }
+
+    .subtitulos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subtitulos li {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .subtitulos li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 15px;
+    }
+
+    .logo {
+        height: 100px;
+    }
+
+    .subtitulos li a {
+        font-size: 14px;
+    }
+
+    .subtitulos li {
+        margin-bottom: 10px;
+    }
+}

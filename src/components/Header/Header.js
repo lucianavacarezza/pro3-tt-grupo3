@@ -3,18 +3,18 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./Header.css"
 
 function Header() {
-    return(
+    return (
         <React.Fragment>
             <header className="header">
-            <Link to= "/"><img src="/imgs/cinemania.png" className="logo"/></Link>
-            <nav>
-                <ul className="subtitulos">
-                    <li> <Link to="/" exact={true}>Home</Link></li>
-                    <li><Link to="/favorites">Películas favoritas</Link></li>
-                    <li><Link to="/populars">Más populares</Link></li>
-                    <li><Link to="/topRated">Mejores puntuadas</Link></li>
-                </ul>
-            </nav>
+                <Link to="/"><img src="/imgs/cinemania.png" className="logo" /></Link>
+                <nav>
+                    <ul className="subtitulos">
+                        <li> <Link to="/" exact={true}>Home</Link></li>
+                        <li><Link to="/favorites">Películas favoritas</Link></li>
+                        <li><Link to="/populars">Más populares</Link></li>
+                        <li><Link to="/topRated">Mejores puntuadas</Link></li>
+                    </ul>
+                </nav>
             </header>
         </React.Fragment>
     )
