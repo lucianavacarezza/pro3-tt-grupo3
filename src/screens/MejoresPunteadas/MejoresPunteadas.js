@@ -71,11 +71,15 @@ class MejoresPunteadas extends Component {
                 <Filtro filtrarPeliculas={(titulo) => this.filtrarPeliculas(titulo)} />
                 {this.state.cargador ?
                     <h3 className="cargador">Cargando...</h3> :
-                    <section>                
+                    <section>
                         <h2>Mejores Punteadas</h2>
-                        <article className="movies">
-                            {this.state.peliculas.map((peli) => <Movie data={peli} />)}
-                        </article>
+                        {this.state.peliculas.length === 0 ?
+                            <p className="cargador">No existen peliculas con ese nombre</p>
+                            :
+                            <article className="movies">
+                                {this.state.peliculas.map((peli) => <Movie data={peli} />)}
+                            </article>
+                        }
                         <button className="botonCargarMas" onClick={() => this.cargarMas()}>Cargar más</button>
                     </section>
                 }

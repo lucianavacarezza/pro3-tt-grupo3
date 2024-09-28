@@ -43,7 +43,7 @@ class SearchResults extends Component {
                         <h3 className="cargador">Cargando...</h3> :
                         this.state.peliculas.length !== 0 ?
                             this.state.peliculas.map((peli, idx) => <Movie key={peli + idx} data={peli} />) :
-                            <h3>No hay resultados para "{this.props.match.params.peliculas}" </h3>
+                            <h3 className="cargador">No hay resultados para "{this.props.match.params.peliculas}" </h3>
                     }
                 </article>
 

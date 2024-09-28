@@ -79,7 +79,7 @@ class MasPopulares extends Component {
                     <section>
                         <h2>Las más populares</h2>
                         {this.state.peliculas.length === 0 ?
-                            <p>No existen peliculas con ese nombre</p>
+                            <p className="cargador">No existen peliculas con ese nombre</p>
                             :
                             <article className="movies">
                                 {this.state.peliculas.map((peli) => <Movie data={peli} />)}
