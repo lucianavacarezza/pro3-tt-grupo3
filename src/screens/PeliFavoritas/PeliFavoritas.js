@@ -12,11 +12,16 @@ class PeliFavoritas extends Component {
       peliculas: [],
       showMore: false,  // Añadido para manejar el estado de mostrar más detalles
       textoFav: "Quitar de favoritos", // Se usa un texto dinámico como en el código de clase
+      cargador: true
     };
   }
 
   componentDidMount() {
     this.cargarFavoritos();
+    this.setState({
+      cargador: false
+
+    })
   }
 
   cargarFavoritos = () => {
@@ -51,7 +56,7 @@ class PeliFavoritas extends Component {
       let nuevoArrayFav = favParseados.filter(elem => elem !== id);
       let nuevoArrayString = JSON.stringify(nuevoArrayFav);
       localStorage.setItem("favorites", nuevoArrayString);
-      
+
       this.setState({
         favorites: nuevoArrayFav,
         peliculas: this.state.peliculas.filter(peli => peli.id !== id),
@@ -72,43 +77,45 @@ class PeliFavoritas extends Component {
     return (
       <React.Fragment>
         <Header />
-        {peliculas.length === 0 ? 
-        <p className="sinfavoritos">No tienes películas en favoritos</p> : 
-        <div className="favorites-page">
-          <h1>Tus Películas Favoritas</h1>
-          <div className="favorites-list">
-            {peliculas.map(peli => (
-              <article key={peli.id} className="movie-container">
-                <img
-                  src={`https://image.tmdb.org/t/p/w342/${peli.poster_path}`}
-                  alt={peli.original_title}
-                />
-                <h2>{peli.original_title}</h2>
-                
-                <button 
-                  className='fav-button added'  
-                  onClick={() => this.sacarFavoritos(peli.id)}
-                >
-                  {this.state.textoFav}
-                </button>
+        {this.state.cargador ?
+          <h3 className="cargador">Cargando...</h3> :
+          peliculas.length === 0 ?
+            <p className="sinfavoritos">No tienes películas en favoritos</p> :
+            <div className="favorites-page">
+              <h1>Tus Películas Favoritas</h1>
+              <div className="favorites-list">
+                {peliculas.map(peli => (
+                  <article key={peli.id} className="movie-container">
+                    <img
+                      src={`https://image.tmdb.org/t/p/w342/${peli.poster_path}`}
+                      alt={peli.original_title}
+                    />
+                    <h2>{peli.original_title}</h2>
 
-                <p className="more" onClick={this.toggleShowMore}>
-                  {showMore ? "Ver Menos" : "Ver más"}
-                </p>
+                    <button
+                      className='fav-button added'
+                      onClick={() => this.sacarFavoritos(peli.id)}
+                    >
+                      {this.state.textoFav}
+                    </button>
 
-                {showMore && (
-                  <section className='extra'>
-                    <p><strong>Sinopsis:</strong> {peli.overview}</p>
-                    <Link to={`/movie/${peli.id}`}>
-                      <button>Ir a detalle</button>
-                    </Link>
-                  </section>
-                )}
+                    <p className="more" onClick={this.toggleShowMore}>
+                      {showMore ? "Ver Menos" : "Ver más"}
+                    </p>
 
-              </article>
-            ))}
-          </div>
-        </div>
+                    {showMore && (
+                      <section className='extra'>
+                        <p><strong>Sinopsis:</strong> {peli.overview}</p>
+                        <Link to={`/movie/${peli.id}`}>
+                          <button>Ir a detalle</button>
+                        </Link>
+                      </section>
+                    )}
+
+                  </article>
+                ))}
+              </div>
+            </div>
         }
         <Footer />
       </React.Fragment>

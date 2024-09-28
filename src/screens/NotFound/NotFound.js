@@ -3,11 +3,11 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 function NotFound() {
-    return(
+    return (
         <React.Fragment>
-            <Header/>
-            <h1> 404 Página no encontrada</h1>
-            <Footer/>
+            <Header />
+            <h1 className="cargador"> 404 Página no encontrada</h1>
+            <Footer />
         </React.Fragment>
 
     )
