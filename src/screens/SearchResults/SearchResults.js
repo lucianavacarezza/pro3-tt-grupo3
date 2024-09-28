@@ -39,13 +39,15 @@ class SearchResults extends Component{
                 <Header/>
                 <h1>Resultados para "{this.props.match.params.peliculas}" </h1> 
                 <article className="movies">
-                    {this.state.peliculas.length !== 0 ?  
+                    {this.state.cargador ? 
+                    <h3 className="cargador">Cargando...</h3> : 
+                    this.state.peliculas.length !== 0 ?  
                     this.state.peliculas.map((peli,idx)=> <Movie key={peli+idx} data={peli}/> ) : 
                     <h3>No hay resultados para tu busqueda </h3>
                     }
                 </article>
                 
-                        <h3 className="cargador">Cargando...</h3> 
+                         
                        
                 <Footer/>
             </React.Fragment>   
