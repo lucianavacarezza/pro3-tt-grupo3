@@ -10,8 +10,8 @@ class PeliFavoritas extends Component {
     this.state = {
       favorites: [],
       peliculas: [],
-      showMore: false,  // Añadido para manejar el estado de mostrar más detalles
-      textoFav: "Quitar de favoritos", // Se usa un texto dinámico como en el código de clase
+      showMore: false,  
+      textoFav: "Quitar de favoritos", 
       cargador: true
     };
   }
@@ -60,7 +60,7 @@ class PeliFavoritas extends Component {
       this.setState({
         favorites: nuevoArrayFav,
         peliculas: this.state.peliculas.filter(peli => peli.id !== id),
-        textoFav: "Agregar a favoritos"  // Actualizar el texto cuando se quita de favoritos
+        textoFav: "Agregar a favoritos"  
       });
     }
   };
