@@ -90,7 +90,7 @@ class PeliFavoritas extends Component {
                   className='fav-button added'  
                   onClick={() => this.sacarFavoritos(peli.id)}
                 >
-                  {favorites.includes(peli.id) ? "Quitar de favoritos" : "Agregar a favoritos"}  {/* Mostrar texto basado en el estado real de favoritos */}
+                  {favorites.includes(peli.id) ? "Quitar de favoritos" : "Agregar a favoritos"}  
                 </button>
 
                 <p className="more" onClick={() => this.toggleShowMore(peli.id)}>
