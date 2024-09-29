@@ -10,18 +10,12 @@ class PeliFavoritas extends Component {
     this.state = {
       favorites: [],
       peliculas: [],
-      showMore: false,  
-      textoFav: "Quitar de favoritos", 
-      cargador: true
+      showMore: {},  
     };
   }
 
   componentDidMount() {
     this.cargarFavoritos();
-    this.setState({
-      cargador: false
-
-    })
   }
 
   cargarFavoritos = () => {
@@ -56,66 +50,66 @@ class PeliFavoritas extends Component {
       let nuevoArrayFav = favParseados.filter(elem => elem !== id);
       let nuevoArrayString = JSON.stringify(nuevoArrayFav);
       localStorage.setItem("favorites", nuevoArrayString);
-
+      
       this.setState({
         favorites: nuevoArrayFav,
         peliculas: this.state.peliculas.filter(peli => peli.id !== id),
-        textoFav: "Agregar a favoritos"  
       });
     }
   };
 
-  toggleShowMore = () => {
+  toggleShowMore = (id) => {
     this.setState((prevState) => ({
-      showMore: !prevState.showMore,
+      showMore: {
+        ...prevState.showMore,
+        [id]: !prevState.showMore[id],
+      },
     }));
   };
 
   render() {
-    const { peliculas, showMore } = this.state;
+    const { peliculas, favorites, showMore } = this.state;
 
     return (
       <React.Fragment>
         <Header />
-        {this.state.cargador ?
-          <h3 className="cargador">Cargando...</h3> :
-          peliculas.length === 0 ?
-            <p className="sinfavoritos">No tienes películas en favoritos</p> :
-            <div className="favorites-page">
-              <h1>Tus Películas Favoritas</h1>
-              <div className="favorites-list">
-                {peliculas.map(peli => (
-                  <article key={peli.id} className="movie-container">
-                    <img
-                      src={`https://image.tmdb.org/t/p/w342/${peli.poster_path}`}
-                      alt={peli.original_title}
-                    />
-                    <h2>{peli.original_title}</h2>
+        {peliculas.length === 0 ? 
+        <p className="sinfavoritos">No tienes películas en favoritos</p> : 
+        <div className="favorites-page">
+          <h1>Tus Películas Favoritas</h1>
+          <div className="favorites-list">
+            {peliculas.map(peli => (
+              <article key={peli.id} className="movie-container">
+                <img
+                  src={`https://image.tmdb.org/t/p/w342/${peli.poster_path}`}
+                  alt={peli.original_title}
+                />
+                <h2>{peli.original_title}</h2>
+                
+                <button 
+                  className='fav-button added'  
+                  onClick={() => this.sacarFavoritos(peli.id)}
+                >
+                  {favorites.includes(peli.id) ? "Quitar de favoritos" : "Agregar a favoritos"}  {/* Mostrar texto basado en el estado real de favoritos */}
+                </button>
 
-                    <button
-                      className='fav-button added'
-                      onClick={() => this.sacarFavoritos(peli.id)}
-                    >
-                      {this.state.textoFav}
-                    </button>
+                <p className="more" onClick={() => this.toggleShowMore(peli.id)}>
+                  {showMore[peli.id] ? "Ver Menos" : "Ver más"}
+                </p>
 
-                    <p className="more" onClick={this.toggleShowMore}>
-                      {showMore ? "Ver Menos" : "Ver más"}
-                    </p>
+                {showMore[peli.id] && (
+                  <section className='extra'>
+                    <p><strong>Sinopsis:</strong> {peli.overview}</p>
+                    <Link to={`/movie/${peli.id}`}>
+                      <button>Ir a detalle</button>
+                    </Link>
+                  </section>
+                )}
 
-                    {showMore && (
-                      <section className='extra'>
-                        <p><strong>Sinopsis:</strong> {peli.overview}</p>
-                        <Link to={`/movie/${peli.id}`}>
-                          <button>Ir a detalle</button>
-                        </Link>
-                      </section>
-                    )}
-
-                  </article>
-                ))}
-              </div>
-            </div>
+              </article>
+            ))}
+          </div>
+        </div>
         }
         <Footer />
       </React.Fragment>

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
-import Movie from '../../components/Movie/Movie';
 import './MovieDetail.css';
 
 class MovieDetail extends Component {
