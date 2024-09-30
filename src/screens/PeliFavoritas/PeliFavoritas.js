@@ -8,9 +8,9 @@ class PeliFavoritas extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favorites: [],
-      peliculas: [],
-      showMore: {},  
+      favorites: [],      
+      peliculas: [],    
+      showMore: {},      
     };
   }
 
@@ -28,8 +28,7 @@ class PeliFavoritas extends Component {
   };
 
   cargarDetallesPeliculas = (favorites) => {
-    for (let i = 0; i < favorites.length; i++) {
-      const id = favorites[i];
+    favorites.forEach(id => {
       fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=1f514b0acc26df1dd866c112f7bcb6c0&language=es-ES`)
         .then(response => response.json())
         .then(data => {
@@ -40,22 +39,26 @@ class PeliFavoritas extends Component {
         .catch(error => {
           console.error("Error al cargar los detalles de la película", error);
         });
+    });
+  };
+
+  agregarFavoritos = (id) => {
+    let { favorites } = this.state;
+    if (!favorites.includes(id)) {
+      const nuevoFavoritos = [...favorites, id];
+      localStorage.setItem("favorites", JSON.stringify(nuevoFavoritos));
+      this.setState({ favorites: nuevoFavoritos });
     }
   };
 
   sacarFavoritos = (id) => {
-    let favorites = localStorage.getItem("favorites");
-    if (favorites !== null) {
-      let favParseados = JSON.parse(favorites);
-      let nuevoArrayFav = favParseados.filter(elem => elem !== id);
-      let nuevoArrayString = JSON.stringify(nuevoArrayFav);
-      localStorage.setItem("favorites", nuevoArrayString);
-      
-      this.setState({
-        favorites: nuevoArrayFav,
-        peliculas: this.state.peliculas.filter(peli => peli.id !== id),
-      });
-    }
+    let { favorites } = this.state;
+    let nuevoArrayFav = favorites.filter(favId => favId !== id);
+    localStorage.setItem("favorites", JSON.stringify(nuevoArrayFav));
+    this.setState({
+      favorites: nuevoArrayFav,
+      peliculas: this.state.peliculas.filter(peli => peli.id !== id),
+    });
   };
 
   toggleShowMore = (id) => {
@@ -88,9 +91,12 @@ class PeliFavoritas extends Component {
                 
                 <button 
                   className='fav-button added'  
-                  onClick={() => this.sacarFavoritos(peli.id)}
+                  onClick={() => favorites.includes(peli.id) 
+                    ? this.sacarFavoritos(peli.id) 
+                    : this.agregarFavoritos(peli.id)
+                  }
                 >
-                  {favorites.includes(peli.id) ? "Quitar de favoritos" : "Agregar a favoritos"}  
+                  {favorites.includes(peli.id) ? "Quitar de favoritos" : "Agregar a favoritos"}
                 </button>
 
                 <p className="more" onClick={() => this.toggleShowMore(peli.id)}>
